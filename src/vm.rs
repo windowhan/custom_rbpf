@@ -23,6 +23,7 @@ use crate::{
     static_analysis::Analysis,
     verifier::Verifier,
 };
+use debug_print::{debug_print, debug_println, debug_eprint, debug_eprintln};
 use std::{
     collections::{BTreeMap, HashMap},
     fmt::Debug,
