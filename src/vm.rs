@@ -156,6 +156,7 @@ impl<C: ContextObject> SyscallRegistry<C> {
 
 impl<C: ContextObject> Default for SyscallRegistry<C> {
     fn default() -> Self {
+        print!("default1");
         Self {
             entries: HashMap::new(),
         }
@@ -243,6 +244,7 @@ impl Config {
 
 impl Default for Config {
     fn default() -> Self {
+        print!("default2");
         Self {
             max_call_depth: 20,
             stack_frame_size: 4_096,

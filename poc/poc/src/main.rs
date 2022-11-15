@@ -15,5 +15,8 @@ fn main() {
     let mut file = std::fs::File::open("/Users/hanhojung/Documents/GitHub/custom_rbpf/poc/poc/src/helloworld.so").expect("open failed");
     let mut buffer: Vec<u8> = vec![];
     file.read_to_end(&mut buffer).expect("read failed"); 
+
+    //print!("{:?}", &mut buffer);
     let execution = Executable::<TestContextObject>::load(config,&buffer,SyscallRegistry::default());
+    print!("{:?}", execution);
 }
