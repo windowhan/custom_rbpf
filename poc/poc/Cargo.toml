@@ -9,3 +9,4 @@ edition = "2021"
 [dependencies]
 solana_rbpf = { git = "https://github.com/windowhan/custom_rbpf", branch = "main" }
 trace = "*"
+debug_print = "*"
