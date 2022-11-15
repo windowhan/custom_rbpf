@@ -921,6 +921,8 @@ impl<C: ContextObject> Executable<C> {
         elf: &'a P,
         elf_bytes: &mut [u8],
     ) -> Result<(), ElfError> {
+
+        print!("relocate function called...");
         let mut syscall_cache = BTreeMap::new();
         let text_section = elf.section(".text")?;
 
