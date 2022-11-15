@@ -284,6 +284,7 @@ dependencies = [
  "scroll",
  "test_utils",
  "thiserror",
+ "trace",
 ]
 
 [[package]]
@@ -319,6 +320,17 @@ name = "thiserror-impl"
 version = "1.0.30"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "aa32fd3f627f367fe16f893e2597ae3c05020f8bba2666a4e6ea73d377e5714b"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "trace"
+version = "0.1.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "593f20eabd47262794270bba246594d8e106221a22694a5e4164dc347f0520d3"
 dependencies = [
  "proc-macro2",
  "quote",

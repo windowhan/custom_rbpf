@@ -21,6 +21,10 @@ use crate::{
     vm::{ContextObject, EbpfVm, ProgramResult},
 };
 
+use trace::trace;
+
+trace::init_depth_var!();
+
 /// Translates a vm_addr into a host_addr and sets the pc in the error if one occurs
 #[cfg_attr(feature = "debugger", macro_export)]
 macro_rules! translate_memory_access {
@@ -166,6 +170,8 @@ impl<'a, 'b, V: Verifier, C: ContextObject> Interpreter<'a, 'b, V, C> {
     }
 
     /// Advances the interpreter state by one instruction
+    /// 
+    #[trace]
     #[rustfmt::skip]
     pub fn step(&mut self) -> Result<Option<u64>, EbpfError> {
         println!("step called...!");
