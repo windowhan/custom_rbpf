@@ -1149,8 +1149,9 @@ impl<C: ContextObject> Executable<C> {
                         if config.reject_broken_elfs
                             && syscall_registry.lookup_syscall(hash).is_none()
                         {
+                            
                             return Err(ElfError::UnresolvedSymbol(
-                                name.to_string(),
+                                name.to_string() + "tqtqtqtq",
                                 r_offset
                                     .checked_div(ebpf::INSN_SIZE)
                                     .and_then(|offset| {
