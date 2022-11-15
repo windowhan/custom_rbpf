@@ -423,6 +423,7 @@ impl X86Instruction {
         destination: u8,
         indirect: X86IndirectAccess,
     ) -> Self {
+        print!("load3");
         exclude_operand_sizes!(size, OperandSize::S0);
         Self {
             size: if let OperandSize::S64 = size {

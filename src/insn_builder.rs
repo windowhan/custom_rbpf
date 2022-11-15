@@ -201,6 +201,7 @@ impl BpfCode {
 
     /// create LOAD instruction, IMMEDIATE is the source
     pub fn load(&mut self, mem_size: MemSize) -> Load {
+        print!("load 2");
         self.load_internal(mem_size, Addressing::Imm, BPF_LD)
     }
 

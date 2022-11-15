@@ -430,6 +430,7 @@ impl<C: ContextObject> Executable<C> {
         bytes: &[u8],
         syscall_registry: SyscallRegistry<C>,
     ) -> Result<Self, ElfError> {
+        print!("load function called..!");
         if config.new_elf_parser {
             // The new parser creates references from the input byte slice, so
             // it must be properly aligned. We assume that HOST_ALIGN is a
