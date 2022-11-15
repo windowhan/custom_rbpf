@@ -14,8 +14,7 @@ use solana_rbpf::{
 use std::{fs::File, io::Read};
 
 fn main() {
-    // "/Users/hanhojung/Documents/GitHub/custom_rbpf/poc/poc/src/helloworld.so"
-    let filename = "/Users/hanhojung/Documents/GitHub/custom_rbpf/tests/elfs/writable_data_section.so";
+    let filename = "/Users/hanhojung/Documents/GitHub/custom_rbpf/tests/elfs/pass_stack_reference.so";
     println!("filename : {:?}", filename);
     let mut file = File::open(filename).unwrap();
 
@@ -32,6 +31,7 @@ fn main() {
             .unwrap();
             
     let mut context_object = TestContextObject::default();
+    context_object.remaining=524289;
     let mut vm = EbpfVm::new(
         &verified_executable,
         &mut context_object,

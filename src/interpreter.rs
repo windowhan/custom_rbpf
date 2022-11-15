@@ -21,9 +21,7 @@ use crate::{
     vm::{ContextObject, EbpfVm, ProgramResult},
 };
 
-use trace::trace;
-
-trace::init_depth_var!();
+use debug_print::{debug_print, debug_println, debug_eprint, debug_eprintln};
 
 /// Translates a vm_addr into a host_addr and sets the pc in the error if one occurs
 #[cfg_attr(feature = "debugger", macro_export)]
@@ -170,11 +168,10 @@ impl<'a, 'b, V: Verifier, C: ContextObject> Interpreter<'a, 'b, V, C> {
     }
 
     /// Advances the interpreter state by one instruction
-    /// 
-    #[trace]
+    ///
     #[rustfmt::skip]
     pub fn step(&mut self) -> Result<Option<u64>, EbpfError> {
-        println!("step called...!");
+        debug_print!("step called...!");
         let executable = self.vm.verified_executable.get_executable();
         let config = &executable.get_config();
 
