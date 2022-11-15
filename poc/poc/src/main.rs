@@ -1,22 +1,44 @@
 #![feature(array_from_fn)]
 extern crate solana_rbpf;
+use trace::trace;
+
+trace::init_depth_var!();
 
 use solana_rbpf::{
     ebpf,
     elf::Executable,
     memory_region::MemoryRegion,
+    verifier::RequisiteVerifier,
     vm::{Config, EbpfVm, SyscallRegistry, TestContextObject, VerifiedExecutable},
 };
 use std::{fs::File, io::Read};
 
 fn main() {
-    let mut config = Config::default();
-    config.reject_broken_elfs  = true;
-    let mut file = std::fs::File::open("/Users/hanhojung/Documents/GitHub/custom_rbpf/poc/poc/src/helloworld.so").expect("open failed");
-    let mut buffer: Vec<u8> = vec![];
-    file.read_to_end(&mut buffer).expect("read failed"); 
+    // "/Users/hanhojung/Documents/GitHub/custom_rbpf/poc/poc/src/helloworld.so"
+    let filename = "/Users/hanhojung/Documents/GitHub/custom_rbpf/tests/elfs/pass_stack_reference.so";
+    println!("filename : {:?}", filename);
+    let mut file = File::open(filename).unwrap();
 
-    //print!("{:?}", &mut buffer);
-    let execution = Executable::<TestContextObject>::load(config,&buffer,SyscallRegistry::default());
-    print!("{:?}", execution);
+    let mut elf = Vec::new();
+    file.read_to_end(&mut elf).unwrap();
+    let executable = Executable::<TestContextObject>::from_elf(
+        &elf,
+        Config::default(),
+        SyscallRegistry::default(),
+    )
+    .unwrap();
+    let verified_executable =
+        VerifiedExecutable::<RequisiteVerifier, TestContextObject>::from_executable(executable)
+            .unwrap();
+            
+    let mut context_object = TestContextObject::default();
+    let mut vm = EbpfVm::new(
+        &verified_executable,
+        &mut context_object,
+        &mut [],
+        Vec::new(),
+    )
+    .unwrap();
+    println!("execution ready!!!");
+    vm.execute_program(true);
 }

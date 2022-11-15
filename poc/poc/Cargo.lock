@@ -102,6 +102,7 @@ name = "poc"
 version = "0.1.0"
 dependencies = [
  "solana_rbpf",
+ "trace",
 ]
 
 [[package]]
@@ -226,6 +227,17 @@ name = "thiserror-impl"
 version = "1.0.37"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "982d17546b47146b28f7c22e3d08465f6b8903d0ea13c1660d9d84a6e7adcdbb"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "trace"
+version = "0.1.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "593f20eabd47262794270bba246594d8e106221a22694a5e4164dc347f0520d3"
 dependencies = [
  "proc-macro2",
  "quote",

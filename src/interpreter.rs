@@ -168,6 +168,7 @@ impl<'a, 'b, V: Verifier, C: ContextObject> Interpreter<'a, 'b, V, C> {
     /// Advances the interpreter state by one instruction
     #[rustfmt::skip]
     pub fn step(&mut self) -> Result<Option<u64>, EbpfError> {
+        println!("step called...!");
         let executable = self.vm.verified_executable.get_executable();
         let config = &executable.get_config();
 
