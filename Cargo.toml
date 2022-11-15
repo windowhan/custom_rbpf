@@ -33,6 +33,7 @@ thiserror = "1.0.26"
 rustc-demangle = "0.1"
 gdbstub = { version = "0.6.2", optional = true }
 trace = "*"
+debug_print = "*"
 
 [features]
 default = ["jit"]
