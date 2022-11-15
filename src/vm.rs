@@ -326,6 +326,25 @@ impl<V: Verifier, C: ContextObject> VerifiedExecutable<V, C> {
     }
 }
 
+
+/// Simple instruction meter for testing
+#[derive(Debug, PartialEq, Eq)]
+pub struct TestInstructionMeter {
+    /// Maximal amount of instructions which still can be executed
+    pub remaining: u64,
+}
+
+impl InstructionMeter for TestInstructionMeter {
+    fn consume(&mut self, amount: u64) {
+        debug_assert!(amount <= self.remaining, "Execution count exceeded");
+        self.remaining = self.remaining.saturating_sub(amount);
+    }
+
+    fn get_remaining(&self) -> u64 {
+        self.remaining
+    }
+}
+
 /// Runtime context
 pub trait ContextObject {
     /// Called for every instruction executed when tracing is enabled

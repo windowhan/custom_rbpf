@@ -10,6 +10,7 @@
 // copied, modified, or distributed except according to those terms.
 
 //! Virtual machine and JIT compiler for eBPF programs.
+#![feature(array_from_fn)]
 #![warn(missing_docs)]
 #![doc(
     html_logo_url = "https://raw.githubusercontent.com/qmonnet/rbpf/master/misc/rbpf.png",
