@@ -15,7 +15,7 @@ use std::{fs::File, io::Read};
 
 fn main() {
     // "/Users/hanhojung/Documents/GitHub/custom_rbpf/poc/poc/src/helloworld.so"
-    let filename = "/Users/hanhojung/Documents/GitHub/custom_rbpf/tests/elfs/pass_stack_reference.so";
+    let filename = "/Users/hanhojung/Documents/GitHub/custom_rbpf/tests/elfs/writable_data_section.so";
     println!("filename : {:?}", filename);
     let mut file = File::open(filename).unwrap();
 
@@ -40,5 +40,6 @@ fn main() {
     )
     .unwrap();
     println!("execution ready!!!");
-    vm.execute_program(true);
+    println!("{:?}", vm.execute_program(true));
+
 }

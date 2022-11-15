@@ -338,6 +338,8 @@ pub struct TestInstructionMeter {
 
 impl InstructionMeter for TestInstructionMeter {
     fn consume(&mut self, amount: u64) {
+        println!("test~~~");
+        debug_print("test~~~~~~~~");
         debug_assert!(amount <= self.remaining, "Execution count exceeded");
         self.remaining = self.remaining.saturating_sub(amount);
     }
